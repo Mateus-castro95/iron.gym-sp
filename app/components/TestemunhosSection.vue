@@ -75,14 +75,20 @@ const testemunhos = [
 let scrollAmount = 0
 const scrollNext = () => {
   if (!trackRef.value) return
-  const maxScroll = trackRef.value.scrollWidth - trackRef.value.clientWidth
-  scrollAmount = Math.min(scrollAmount + 400, maxScroll)
+  const cardWidth = trackRef.value.querySelector('.test-card')?.clientWidth ?? 400
+  const gap = 32 // gap-8 = 2rem = 32px
+  const step = cardWidth + gap
+  const maxScroll = trackRef.value.scrollWidth - trackRef.value.parentElement!.clientWidth
+  scrollAmount = Math.min(scrollAmount + step, maxScroll)
   gsap.to(trackRef.value, { x: -scrollAmount, duration: 0.6, ease: 'power2.out' })
 }
 
 const scrollPrev = () => {
   if (!trackRef.value) return
-  scrollAmount = Math.max(scrollAmount - 400, 0)
+  const cardWidth = trackRef.value.querySelector('.test-card')?.clientWidth ?? 400
+  const gap = 32
+  const step = cardWidth + gap
+  scrollAmount = Math.max(scrollAmount - step, 0)
   gsap.to(trackRef.value, { x: -scrollAmount, duration: 0.6, ease: 'power2.out' })
 }
 
@@ -106,7 +112,14 @@ onMounted(() => {
 
 
 .test-card {
-  @apply bg-dark-2 p-10 rounded-md border border-mid/30 w-[300px] md:w-[450px] transition-all duration-300;
+  @apply bg-dark-2 p-10 rounded-md border border-mid/30 transition-all duration-300;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .test-card {
+    width: 450px;
+  }
 }
 
 .test-card:hover {

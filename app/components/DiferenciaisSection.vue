@@ -31,7 +31,8 @@
             </div>
             <div class="image-stack__item image-stack__item--2" data-speed="1.1">
               <div class="experience-badge">
-                <span class="text-4xl font-display text-primary">10+</span>
+                <TrendingUp class="badge-icon" />
+                <span class="text-2xl font-display text-black">10+</span>
                 <span class="text-2xs font-mono uppercase tracking-tighter">Anos de Excelência</span>
               </div>
             </div>
@@ -47,7 +48,7 @@
 import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ShieldCheck, Zap, Users, Trophy } from 'lucide-vue-next'
+import { ShieldCheck, Zap, Users, Trophy, TrendingUp } from 'lucide-vue-next'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -167,11 +168,19 @@ onMounted(() => {
 }
 
 .image-stack__item--2 {
-  @apply absolute -bottom-10 -left-10 z-10;
+  @apply absolute -bottom-10 left-0 lg:-left-10 z-10;
 }
 
 .experience-badge {
-  @apply bg-primary p-6 rounded-md shadow-2xl flex flex-col items-center justify-center text-black border-4 border-dark;
-  min-width: 140px;
+  @apply bg-primary p-4 rounded-md shadow-2xl flex flex-col items-center justify-center text-black border-4 border-dark;
+  min-width: 110px;
+  gap: 0.25rem;
+}
+
+.badge-icon {
+  width: 1.75rem;
+  height: 1.75rem;
+  color: #080808;
+  stroke-width: 2.5;
 }
 </style>

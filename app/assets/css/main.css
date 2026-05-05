@@ -70,7 +70,12 @@
     @apply bg-black text-off-white font-body;
     overflow-x: hidden;
     min-height: 100dvh;
-    cursor: none; /* custom cursor */
+  }
+
+  @media (min-width: 768px) {
+    body {
+      cursor: none; /* custom cursor only on desktop */
+    }
   }
 
   /* Scrollbar */
@@ -272,7 +277,7 @@
 
   /* ── Custom cursor ───────────────────────────────────────────── */
   .cursor-dot {
-    @apply fixed top-0 left-0 pointer-events-none z-[100];
+    @apply hidden md:block fixed top-0 left-0 pointer-events-none z-[100];
     width: 8px;
     height: 8px;
     background: var(--color-primary);
@@ -281,7 +286,7 @@
     transition: transform 100ms ease, width 200ms ease, height 200ms ease;
   }
   .cursor-ring {
-    @apply fixed top-0 left-0 pointer-events-none z-[99];
+    @apply hidden md:block fixed top-0 left-0 pointer-events-none z-[99];
     width: 36px;
     height: 36px;
     border: 1.5px solid rgba(200,245,61,0.5);
